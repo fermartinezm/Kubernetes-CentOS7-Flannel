@@ -14,8 +14,8 @@ First, you need check if the your localhost supports virtualization. You can do 
 If the result is 0 your localhost cannot support virtualization, otherwise it supports virtualization but you must be ensured it is enable in the BIOS.
 
 
+
 Also, you need to install Ansible. To install ansible run the commands with root
-> wget https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64/ansible-2.7.9-1.el7.ans.noarch.rpm
 
 > yum install ansible-2.4.2.0-2.el7
 
