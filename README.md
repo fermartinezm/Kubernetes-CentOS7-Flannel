@@ -9,6 +9,6 @@ to perform automatic deployment and Openvswitch to bridge traffic between VMs an
 
 # 2. Prepare enviroment
 You need check if the your localhost supports virtualization typing the next command:
-> egrep -c '(vmx|svm)' /proc/cpuinfo
+>egrep -c '(vmx|svm)' /proc/cpuinfo
 
 If the result is 0 your localhost cannot support virtualization otherwise it supports virtualization.
