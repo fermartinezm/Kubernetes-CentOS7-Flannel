@@ -15,8 +15,12 @@ If the result is 0 your localhost cannot support virtualization, otherwise it su
 
 
 
-Also, you need to install Ansible. To install ansible run the commands with root
+Also, you need to install Ansible-2.7.9-1.e17. To install ansible yo need run the next commands with root user:
 
-> yum install ansible-2.4.2.0-2.el7
+> yum install wget -y
+
+> wget https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64/ansible-2.7.9-1.el7.ans.noarch.rpm
+
+> yum install ansible-2.7.9-1.el7.ans.noarch.rpm
 
 or refer to https://docs.ansible.com/ansible/2.4/intro_installation.html
