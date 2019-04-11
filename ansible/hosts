@@ -1,0 +1,16 @@
+[cluster]
+#10.0.0.201	host=k8s-master
+#10.0.0.202	host=k8s-minion1
+#10.0.0.203	host=k8s-minion2
+#10.6.19.201	host=vm-1
+192.168.1.201	host=k8s-master1
+192.168.1.202   host=k8s-minion2
+192.168.1.203   host=k8s-minion3
+
+[master]
+10.0.0.201
+
+[minions]
+10.0.0.202
+10.0.0.203
+

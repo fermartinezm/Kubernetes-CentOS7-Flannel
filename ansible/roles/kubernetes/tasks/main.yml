@@ -1,0 +1,20 @@
+---
+- name: Create /etc/yum.repos.d/ dir
+  file:
+    path: /etc/yum.repos.d/
+    state: directory
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Modify /etc/yum.repos.d/kubernetes.repo file
+  template:
+    src: kubernetes.repo.j2
+    dest: /etc/yum.repos.d/kubernetes.repo
+    force: no
+
+- name: Install Kubernetes
+  yum:
+    name: ['kubeadm-1.14.0','kubectl-1.14.0','kubelet-1.14.0']
+    state: present
+  notify: Kubelet service

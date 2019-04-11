@@ -1,0 +1,38 @@
+---
+- name: Intall dependencies
+  yum:
+    name: ['yum-utils','device-mapper-persistent-data','lvm2']
+    state: present
+
+- name: Add docker repo
+  command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+  args:
+    creates: /etc/yum.repos.d/docker-ce.repo
+
+- name: Install docker
+  yum:
+    name: docker-ce-18.09.4
+    state: present
+
+- name: Create /etc/docker/ dir
+  file:
+    path: /etc/docker
+    state: directory
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Modify file /etc/docker/daemon.json
+  template:
+    src: daemon.json.j2
+    dest: /etc/docker/daemon.json
+    force: no
+
+- name: Create /etc/systemd/system/docker.service.d dir
+  file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+    mode: 0644
+    owner: root
+    group: root
+  notify: Docker service

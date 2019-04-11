@@ -1,0 +1,9 @@
+---
+- name: Kubelet service
+  systemd:
+    name: kubelet
+    state: started
+    enabled: yes
+    masked: no
+    daemon_reload: yes
+
