@@ -1,0 +1,11 @@
+---
+- name: Add minions
+  shell: >
+    {{ kubeadm_join }}
+  args:
+    creates: /etc/.kubejoined
+
+- name: Mark minion as joined
+  file:
+    path: /etc/.kubejoined
+    state: directory

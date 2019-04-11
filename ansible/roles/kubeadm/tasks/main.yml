@@ -1,0 +1,29 @@
+---
+- name: Run kubeadm init
+  shell: >
+    kubeadm init   --pod-network-cidr {{ ip_flannel }}   --apiserver-advertise-address {{ hostsvars[k8s-master1].host }}
+  args:
+    create: {{ kubectl_home }}/.kube
+
+- name: Create {{ kubectl_home }}/.kube dir
+  file:
+    path: {{ kubectl_home }}/.kube
+    state: directory
+    mode: 0755
+
+- name: Copy file {{ kubectl_home }}/.kube/config and change owners
+  copy:
+    src: /etc/kubernetes/admin.conf 
+    dest: {{ kubectl_home }}/.kube/config
+    owner: {{ kubectl_user }}
+    group: {{ kubectl_group }}
+    mode: 0500
+  
+- name: Get join command
+  shell: >
+    kubeadm token create --print-join-command
+  register: kubeadm_join_output
+
+- name: Set fact with join command
+  set_fact:
+    kubeadm_join: "{{ kubeadm_join_output.stdout }}"

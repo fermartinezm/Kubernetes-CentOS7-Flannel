@@ -1,0 +1,12 @@
+---
+- name: Restart firewalld
+  service:
+    name: firewalld
+    state: restarted
+
+- name: ntpd service
+  systemd:
+    name: ntpd
+    state: started
+    enabled: yes
+

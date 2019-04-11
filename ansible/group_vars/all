@@ -1,0 +1,11 @@
+ip_flannel: 10.244.0.0/16
+
+kubectl_home: $HOME
+kubectl_user: root
+kubectl_group: root
+
+docker_user: root
+docker_group: root
+
+host_user: root
+host_group: root
