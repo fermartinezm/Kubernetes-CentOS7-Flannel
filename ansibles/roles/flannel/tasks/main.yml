@@ -1,0 +1,12 @@
+---
+- name: Create kube-flannel.yml
+  template:
+    src: kube-flannel.yml.j2
+    dest: '{{ host_home }}/kube-flannel.yml'
+    force: no
+
+- name: Install flannel
+  shell: >
+    kubectl apply   --filename {{ host_home }}/kube-flannel.yml
+  args:
+    creates: /etc/cni/net.d

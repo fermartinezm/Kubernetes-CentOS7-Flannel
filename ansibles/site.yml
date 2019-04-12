@@ -33,7 +33,7 @@
   roles:
     - kubejoin
 
-#- hosts: master
-#  become: true
-#  roles:
-#    - flannel
+- hosts: master
+  become: true
+  roles:
+    - flannel

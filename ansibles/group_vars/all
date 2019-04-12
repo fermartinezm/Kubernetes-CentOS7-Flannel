@@ -9,5 +9,4 @@ docker_group: root
 
 host_user: root
 host_group: root
-
-#kube_join:
+host_home: /root

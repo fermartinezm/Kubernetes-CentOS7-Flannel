@@ -1,6 +1,0 @@
----
-- name: Install flannel
-  shell: >
-    kubectl apply   --filename https://raw.githubusercontent.com/coreos/flannel/v0.10.0/Documentation/kube-flannel.yml
-  args:
-    creates: /etc/cni/net.d
