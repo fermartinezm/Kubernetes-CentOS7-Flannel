@@ -1,4 +1,4 @@
-# Kubernetes-deployment
+# Kubernetes deployment on CentOS7, CNI: flannel
 Kubernetes deployment on CentOS 7. It uses KVM to create the VMs (one master and two minions), Ansible as configuration manager to 
 to perform automatic deployment and Openvswitch to bridge traffic between VMs and with the outside world.
 
