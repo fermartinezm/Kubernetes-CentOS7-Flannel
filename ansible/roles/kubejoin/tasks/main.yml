@@ -1,7 +1,17 @@
 ---
+#- name: Set skip preflight checks
+#  set_fact:
+#    arg_kubejoin: "--ignore-preflight-errors=all"
+
+#- name: Collect kube_join command
+#  shell: >
+#    {{ kube_join_fact }} | sed -e 's/join/join {{ arg_kubejoin }} /'
+#    {{ kube_join_fact }} --ignore-preflight-errors=all
+#  register: kube_join_command
+
 - name: Add minions
   shell: >
-    {{ kubeadm_join }}
+    {{ kube_join_fact }} --ignore-preflight-errors=all
   args:
     creates: /etc/.kubejoined
 

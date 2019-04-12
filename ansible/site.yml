@@ -4,27 +4,36 @@
   roles:
     - ntp
 
-#- hosts: cluster
-#  become: true
-#  roles:
-#    - pre-install
+- hosts: cluster
+  become: true
+  roles:
+    - pre-install
 
-#- hosts: cluster
-#  become: true
-#  roles:
-#    - docker
+- hosts: cluster
+  become: true
+  roles:
+    - docker
 
-#- hosts: cluster
-#  become: true
-#  roles:
-#    - kubernetes
+- hosts: cluster
+  become: true
+  roles:
+    - kubernetes
+
+- hosts: master
+  become: true
+  roles:
+    - kubeadm
+
+- hosts: minions
+  become: true
+  pre_tasks:
+    - name: Get kube_join_fact from master
+      set_fact:
+        kube_join_fact: "{{ hostvars[groups['master'][0]]['kube_join_fact'] }}"
+  roles:
+    - kubejoin
 
 #- hosts: master
 #  become: true
 #  roles:
-#    - kubeadm
-
-#- hosts: minions
-#  become: true
-#  roles:
-#    - kubejoin
+#    - flannel

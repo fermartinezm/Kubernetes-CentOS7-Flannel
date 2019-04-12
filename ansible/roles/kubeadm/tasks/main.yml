@@ -1,29 +1,30 @@
 ---
 - name: Run kubeadm init
   shell: >
-    kubeadm init   --pod-network-cidr {{ ip_flannel }}   --apiserver-advertise-address {{ hostsvars[k8s-master1].host }}
+    kubeadm init   --pod-network-cidr {{ ip_flannel }}   --apiserver-advertise-address {{ hostvars['k8s-master1'].ansible_host }}
   args:
-    create: {{ kubectl_home }}/.kube
+    creates: '{{ kubectl_home }}/.kube'
 
 - name: Create {{ kubectl_home }}/.kube dir
   file:
-    path: {{ kubectl_home }}/.kube
+    path: '{{ kubectl_home }}/.kube'
     state: directory
     mode: 0755
 
 - name: Copy file {{ kubectl_home }}/.kube/config and change owners
   copy:
+    remote_src: yes
     src: /etc/kubernetes/admin.conf 
-    dest: {{ kubectl_home }}/.kube/config
-    owner: {{ kubectl_user }}
-    group: {{ kubectl_group }}
+    dest: '{{ kubectl_home }}/.kube/config'
+    owner: "{{ kubectl_user }}"
+    group: "{{ kubectl_group }}"
     mode: 0500
   
 - name: Get join command
   shell: >
     kubeadm token create --print-join-command
-  register: kubeadm_join_output
+  register: kubeadm_join
 
-- name: Set fact with join command
+- name: Set fact with kube join command
   set_fact:
-    kubeadm_join: "{{ kubeadm_join_output.stdout }}"
+    kube_join_fact: "{{ kubeadm_join.stdout }}"

@@ -1,17 +1,17 @@
-#[cluster]
-#k8s-master1	ansible_host=192.168.1.201
-#k8s-minion2    ansible_host=192.168.1.202
-#k8s-minion3    ansible_host=192.168.1.203
+#[master]
+#k8s-master1     ansible_host=192.168.1.201
+
+#[minions]
+#k8s-minion2     ansible_host=192.168.1.202
+#k8s-minion3     ansible_host=192.168.1.203
 
 [master]
-k8s-master1     ansible_host=192.168.1.201
+k8s-master1     ansible_host=10.0.0.201
 
 [minions]
-k8s-minion2     ansible_host=192.168.1.202
-k8s-minion3     ansible_host=192.168.1.203
+k8s-minion2     ansible_host=10.0.0.202
+k8s-minion3     ansible_host=10.0.0.203
 
-[cluster]
-k8s-master1 
-k8s-minion2
-k8s-minion3
-
+[cluster:children]
+master
+minions

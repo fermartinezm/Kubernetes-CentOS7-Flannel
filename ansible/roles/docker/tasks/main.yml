@@ -19,8 +19,8 @@
     path: /etc/docker
     state: directory
     mode: 0644
-    owner: {{ docker_user }}
-    group: {{ docker_group }}
+    owner: "{{ docker_user }}"
+    group: "{{ docker_group }}"
 
 - name: Modify file /etc/docker/daemon.json
   template:
@@ -33,6 +33,6 @@
     path: /etc/systemd/system/docker.service.d
     state: directory
     mode: 0644
-    owner: {{ docker_user }}
-    group: {{ docker_group }}
+    owner: "{{ docker_user }}"
+    group: "{{ docker_group }}"
   notify: Docker service

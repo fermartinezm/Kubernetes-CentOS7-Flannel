@@ -7,7 +7,7 @@ restrict ::1
 # Hosts on local network are less restricted.
 #restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
 {% for host in groups['minions'] %}
-    restrict  {{ hostvars[host]['ansible_host']}} mask 255.255.255.0 nomodify notrap
+restrict  {{ hostvars[host]['ansible_host']}} mask 255.255.255.0 nomodify notrap
 {% endfor %}
 
 
