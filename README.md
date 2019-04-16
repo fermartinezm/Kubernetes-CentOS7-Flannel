@@ -7,6 +7,6 @@ To do the deployment you need at least two machines or virtual machines, one mas
 ## Installation
 There are two different ways to do the deployment:
 
-- With commands (manual installation): You can find how install and configure Openvswitch step by step
+- **Commands** (manual installation): You can find how install and configure Openvswitch step by step
 
-- With ansible (automated installation): You can find all the necessary files for an automated installation of Openvswitch using Ansible
+- **Ansible** (automated installation): You can find all the necessary files for an automated installation of Openvswitch using Ansible
