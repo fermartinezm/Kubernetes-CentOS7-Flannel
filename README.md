@@ -7,10 +7,10 @@ You need at least two machines or virtual machines, one master and one minion. Y
 ## Installation
 There are two different ways:
 
-- **Commands** (manual installation): You can find how install and configure Openvswitch step by step
+- **Commands** (manual installation): You can find how install and configure Kubernetes step by step
 
-- **Ansible** (automated installation): You can find all the necessary files for an automated installation of Openvswitch using Ansible
+- **Ansible** (automated installation): You can find all the necessary files for an automated installation of Kubernetes using Ansible
 
-## Versions:
+## Installed versions:
 - Docker: 18.09.4
 - Kubernetes: 1.14
