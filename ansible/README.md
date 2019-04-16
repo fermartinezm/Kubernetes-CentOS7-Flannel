@@ -2,7 +2,7 @@
 In this section there are all the necessary files for an automated installation of Kubernetes v.1.14 in CentOS7.
 
 ## 1. Pre-requisites
-- You need have Ansible installed in the computer where the installation is launched. You can install it using the command `yum install ansible` or you can find more information [here](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html?extIdCarryOver=true&sc_cid=701f2000001OH7YAAW#latest-release-via-dnf-or-yum).
+- You need have Ansible installed in the computer where the installation is launched. You can install it using the command `yum install ansible` or you can find more information [here](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html?extIdCarryOver=true&sc_cid=701f2000001OH7YAAW#latest-release-via-dnf-or-yum). The last ansible version checked is 2.7.9.
 
 - You need at least two machines or virtual machines, one master and one minion. By default the project uses one master and two minions.
 
