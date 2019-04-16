@@ -1,15 +1,12 @@
 ### Install ntp. **Only Master**
-<br />
 $ yum install ntp
 
 ### Configure firewalld. **Only Master**
-<br />
 $ firewall-cmd --add-service=ntp --permanent
 <br />
 $ firewall-cmd --reload
 
 ### Configure ntp. **Only Master**
-<br />
 vi /etc/ntp.conf
 
 #You have to comment the lines
@@ -39,8 +36,7 @@ restrict <IP_MINION2> mask 255.255.255.0 nomodify notrap
 #Add more minions if you have more
 
 ### Restart and enable ntp service. **Only Master**
+$ systemctl restart ntpd
 <br />
-systemctl restart ntpd
-<br />
-systemctl enable ntpd
+$ systemctl enable ntpd
 <br />
