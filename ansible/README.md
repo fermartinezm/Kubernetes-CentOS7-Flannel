@@ -33,7 +33,7 @@ master
 minions
 
 ### - Install other CNI
-If you want use a different CNI you only need comment the last four lines of the `site.yml` file and install other CNI. You can find more information about CNIs [here](https://kubernetes.io/docs/concepts/cluster-administration/networking/).
+If you want use a different CNI you only need comment the last four lines of the `site.yml` file and use another CNI. You can find more information about CNIs [here](https://kubernetes.io/docs/concepts/cluster-administration/networking/).
 
 Example:
 <br />
