@@ -7,7 +7,7 @@ $ hostnamectl set-hostname <HOSTNAME_MINION1>
 <br />
 $ hostnamectl set-hostname <HOSTNAME_MINION2>
 <br />
-$ ...
+...
 
 ### Modify /etc/hosts file adding.
 **Master and Minions**
