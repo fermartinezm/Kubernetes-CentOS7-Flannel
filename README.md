@@ -1,26 +1,12 @@
 # Kubernetes deployment on CentOS7, CNI: flannel
-Kubernetes deployment on CentOS 7. It uses KVM to create the VMs (one master and two minions), Ansible as configuration manager to 
-to perform automatic deployment and Openvswitch to bridge traffic between VMs and with the outside world.
+In this proyect you can find the deployment of Kubernetes in CentOS 7, using Flannel as CNI. 
 
-## 1. Pre-requisites
+## Pre-requisites
+To do the deployment uses at least two machines, one master and one minion, but you can add as many minions as you want.
 
-- Localhost machine with CentOS 7
-- Ansible
+## Installation
+There are two different ways to do the deployment:
 
-## 2. Prepare enviroment
-First, you need check if the your localhost supports virtualization. You can do it typing the next command:
-> egrep -c '(vmx|svm)' /proc/cpuinfo
+- With commands (manual installation): You can find how install and configure Openvswitch step by step
 
-If the result is 0 your localhost cannot support virtualization, otherwise it supports virtualization but you must be ensured it is enable in the BIOS.
-
-
-
-Also, you need to install Ansible-2.7.9-1.e17. To install ansible yo need run the next commands with root user:
-
-> yum install wget -y
-
-> wget https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64/ansible-2.7.9-1.el7.ans.noarch.rpm
-
-> yum install ansible-2.7.9-1.el7.ans.noarch.rpm
-
-or refer to https://docs.ansible.com/ansible/2.4/intro_installation.html
+- With ansible (automated installation): You can find all the necessary files for an automated installation of Openvswitch using Ansible
