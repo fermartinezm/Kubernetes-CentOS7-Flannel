@@ -14,7 +14,7 @@ $ hostnamectl set-hostname <HOSTNAME_MINION2>
 <br />
 $ vi /etc/hosts
 <br />
-<IP_MASTER> <HOSTNAME_Master>
+<IP_MASTER> <HOSTNAME_MASTER>
 <br />
 <IP_MINION1> <HOSTNAME_MINION1>
 <br />
