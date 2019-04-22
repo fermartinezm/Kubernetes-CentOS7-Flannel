@@ -6,7 +6,7 @@
 - name: Modify hosts file
   lineinfile:
     dest: /etc/hosts
-    line: "{{ hostvars[item].ansible_host }}  {{ item }}"
+    line: "{{ hostvars[item].ansible_host }}   {{ item }}"
     state: present
   with_items: "{{ groups.cluster }}"
 
