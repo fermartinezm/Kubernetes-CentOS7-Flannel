@@ -1,5 +1,5 @@
 # Kubernetes deployment on CentOS7, CNI: flannel
-In this proyect you can find the deployment of Kubernetes in CentOS 7, using Flannel as CNI. 
+In this proyect you can find the deployment of Kubernetes on CentOS 7, using Flannel as CNI. 
 
 ## Pre-requisites
 You need at least two machines or virtual machines, one master and one minion. You can add as many minions as you want.
