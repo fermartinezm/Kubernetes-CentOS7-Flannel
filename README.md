@@ -14,3 +14,4 @@ There are two different ways:
 ## Installed versions:
 - Docker: 18.09.4
 - Kubernetes: 1.14
+
