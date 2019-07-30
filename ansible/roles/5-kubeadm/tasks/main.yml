@@ -8,7 +8,7 @@
   command: >
     kubeadm init   --pod-network-cidr {{ ip_flannel }}   --apiserver-advertise-address {{ hostvars[item].ansible_host }}
   with_items: "{{ groups.master }}"
-  when: kube_config.stat.exists
+  when: not kube_config.stat.exists
 
 - name: Create {{ kubectl_home }}/.kube dir
   file:
