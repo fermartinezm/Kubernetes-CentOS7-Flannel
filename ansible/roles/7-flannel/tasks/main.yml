@@ -6,7 +6,7 @@
     force: no
 
 - name: Install flannel
-  shell: >
+  command: >
     kubectl apply   --filename {{ host_home }}/kube-flannel.yml
   args:
     creates: /etc/cni/net.d

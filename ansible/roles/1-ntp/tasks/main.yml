@@ -4,7 +4,7 @@
     name: ntp
     state: present
 
-- name: Open ports firewalld
+- name: Add ntp service to firewalld
   firewalld:
     service: ntp
     permanent: yes

@@ -1,9 +1,9 @@
 [master]
-master		ansible_host=10.6.19.211
+k8s-master		ansible_host=10.6.17.235
 
 [minions]
-minion1		ansible_host=10.6.19.212
-minion2		ansible_host=192.168.1.73
+k8s-minion1		ansible_host=10.6.17.236
+#k8s-minion2		ansible_host=192.168.1.73
 
 [cluster:children]
 master

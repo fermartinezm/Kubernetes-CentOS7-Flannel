@@ -1,0 +1,81 @@
+---
+- name: Change hostnames
+  hostname:
+    name: "{{ inventory_hostname }}"
+
+- name: Modify hosts file
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ hostvars[item].ansible_host }}   {{ item }}"
+    state: present
+  with_items: "{{ groups.cluster }}"
+
+- name: Check Selinux
+  command: 'getenforce'
+  register: selinux
+  changed_when: selinux.stdout == 'Enforcing'
+
+- name: Disable Selinux for this session
+  command: setenforce 0
+  when: selinux.stdout == 'Enforcing'
+
+- name: Disable Selinux permanently
+  selinux:
+    state: disabled
+
+- name: Disable swap 1
+  replace:
+    path: /etc/fstab
+    regexp: '/dev/mapper/centos-swap'
+    replace: '#/dev/mapper/centos-swap'
+
+- name: Check swap memory
+  command: 'swapon -s'
+  register: swap
+  changed_when: not swap.stdout
+
+- name: Disable swap 2
+  command: 'swapoff -a'
+  when: swap.stdout | length > 0
+
+- name: Add br_netfilter
+  modprobe:
+    name: br_netfilter
+    state: present
+
+- name: Check /proc/sys/net/bridge/bridge-nf-call-iptables file value
+  command: 'cat /proc/sys/net/bridge/bridge-nf-call-iptables'
+  register: iptables
+  changed_when: iptables.stdout == '0'
+
+- name: Set to 1 file /proc/sys/net/bridge/bridge-nf-call-iptables
+  command: 'echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables'
+  when: iptables == '0'
+
+- name: Check /proc/sys/net/bridge/bridge-nf-call-ip6tables file value
+  command: 'cat /proc/sys/net/bridge/bridge-nf-call-ip6tables'
+  register: ip6tables
+  changed_when: ip6tables.stdout == '0'
+
+- name: Set to 1 file /proc/sys/net/bridge/bridge-nf-call-ip6tables
+  command: 'echo 1 > /proc/sys/net/bridge/bridge-nf-call-ip6tables'
+  when: ip6tables == '0'
+
+- name: Add masquerade firewalld
+  firewalld:
+    masquerade: yes
+    permanent: yes
+    state: enabled
+
+- name: Open ports firewalld
+  firewalld:
+    port: "{{ item }}"
+    permanent: yes
+    state: enabled
+  with_items:
+    - 6443/tcp
+    - 8472/udp
+    - 10250/tcp
+  notify:
+  - Restart firewalld
+

@@ -1,10 +1,14 @@
 ---
+- name: Check if {{ kubectl_home }}/.kube/config file exists
+  stat:
+    path: '{{ kubectl_home }}/.kube/config'
+  register: kube_config
+
 - name: Run kubeadm init
-  shell: >
+  command: >
     kubeadm init   --pod-network-cidr {{ ip_flannel }}   --apiserver-advertise-address {{ hostvars[item].ansible_host }}
   with_items: "{{ groups.master }}"
-  args:
-    creates: '{{ kubectl_home }}/.kube'
+  when: kube_config.stat.exists
 
 - name: Create {{ kubectl_home }}/.kube dir
   file:
@@ -15,17 +19,20 @@
 - name: Copy file {{ kubectl_home }}/.kube/config and change owners
   copy:
     remote_src: yes
-    src: /etc/kubernetes/admin.conf 
+    src: /etc/kubernetes/admin.conf
     dest: '{{ kubectl_home }}/.kube/config'
     owner: "{{ kubectl_user }}"
     group: "{{ kubectl_group }}"
     mode: 0500
-  
+
 - name: Get join command
-  shell: >
+  command: >
     kubeadm token create --print-join-command
   register: kubeadm_join
+  changed_when: kubeadm_join.rc == 0
 
-- name: Set fact with kube join command
-  set_fact:
-    kube_join_fact: "{{ kubeadm_join.stdout }}"
+- name: Copy join command
+  copy:
+    content: '{{ kubeadm_join.stdout }}'
+    dest: './join-command'
+  delegate_to: localhost

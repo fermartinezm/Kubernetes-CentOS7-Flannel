@@ -1,0 +1,27 @@
+---
+- name: Check if join-command file exists
+  stat:
+    path: './join-command'
+  delegate_to: localhost
+  register: join_command
+
+- name: Copy the join command to server location
+  copy:
+    src: join-command
+    dest: /tmp/join-command.sh
+    mode: 0777
+
+- name: Check if /etc/kubernetes/bootstrap-kubelet.conf file exists
+  stat:
+    path: '/etc/kubernetes/bootstrap-kubelet.conf'
+  register: kube_config
+
+- name: Join the node to cluster
+  command: sh /tmp/join-command.sh
+  when: join_command.stat.exists
+
+- name: Delete join-command file
+  file:
+    state: absent
+    path: './join-command'
+  delegate_to: localhost
