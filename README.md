@@ -11,7 +11,6 @@ There are two different ways:
 
 - **Ansible** (automated installation): You can find all the necessary files for an automated installation of Kubernetes using Ansible
 
-## Installed versions:
+## Default and last checked versions:
 - Docker: 18.09.4
 - Kubernetes: 1.14
-

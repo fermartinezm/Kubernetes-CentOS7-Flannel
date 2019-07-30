@@ -32,6 +32,9 @@ master
 <br />
 minions
 
+### - Change version
+You can modify the kubernetes and docker version modifying the file group_vars/all
+
 ### - Install other CNI
 If you want use a different CNI you have to comment the last four lines of the `site.yml` file and use another CNI. You can find more information about CNIs [here](https://kubernetes.io/docs/concepts/cluster-administration/networking/).
 

@@ -10,3 +10,6 @@ docker_group: root
 host_user: root
 host_group: root
 host_home: /root
+
+docker_version: 18.09.4
+kube_version: 1.14.0

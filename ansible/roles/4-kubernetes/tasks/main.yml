@@ -15,6 +15,6 @@
 
 - name: Install Kubernetes
   yum:
-    name: ['kubeadm-1.14.0','kubectl-1.14.0','kubelet-1.14.0']
+    name: ['kubeadm-{{ kube_version }}','kubectl-{{ kube_version }}','kubelet-{{ kube_version }}']
     state: present
   notify: Kubelet service
